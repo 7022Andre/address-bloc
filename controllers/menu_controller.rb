@@ -13,7 +13,8 @@ class MenuController
 		puts "2 - Create an entry"
 		puts "3 - Search for an entry"
 		puts "4 - Import entries from a CSV"
-		puts "5 - Exit"
+		puts "5 - CLEAR ENTIRE DATABASE"
+		puts "6 - Exit"
 		print "Enter your selection: "
 
 		selection = gets.to_i
@@ -36,6 +37,10 @@ class MenuController
 				read_csv
 				main_menu
 			when 5
+				system "clear"
+				destroy_database
+				main_menu
+			when 6
 				puts "Good-bye!"
 				exit(0)
 			else
@@ -54,6 +59,11 @@ class MenuController
 
 		system "clear"
 		puts "End of entries"
+	end
+
+	def destroy_database
+		address_book.entries.clear
+		puts "Database is now empty!"
 	end
 
 	def create_entry
